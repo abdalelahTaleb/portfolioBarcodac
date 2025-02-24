@@ -255,6 +255,21 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
+        .social-btn.whatsapp {
+            background: rgba(255,255,255,0.08);
+            position: relative;
+        }
+
+        .social-btn.whatsapp:hover {
+            background: #25d366;
+        }
+
+        .vcf-download {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
     </style>
 </head>
 <body>
@@ -269,6 +284,7 @@
         <p class="company-description">
             نبتكر حلولًا رقمية استثنائية تجمع بين الإبداع الفني والتقنية الحديثة لصنع تجارب مستخدم لا تُنسى
         </p>
+
         <div class="contact-info">
             <div class="phone">
                 <i class="fas fa-phone"></i>
@@ -292,10 +308,39 @@
                 <i class="fab fa-whatsapp"></i>
             </a>
         </div>
+        <div class="contact-info">
+            <div class="phone vcf-download" onclick="generateVCard()">
+                <i class="fas fa-address-card"></i>
+                حفظ جهة الاتصال
+            </div>
+        </div>
         <div class="action-buttons">
             <a href="#" class="action-btn">الموقع الإلكتروني</a>
             <a href="#" class="action-btn">التواصل المباشر</a>
         </div>
     </div>
+    <script>
+            function generateVCard() {
+            const vcardContent = [
+                'BEGIN:VCARD',
+                'VERSION:3.0',
+                'FN:الشركة الرائدة',
+                'ORG:الشركة الرائدة;',
+                'TEL;TYPE=WORK,VOICE:+966551234567',
+                'END:VCARD'
+            ].join('\n');
+
+            const blob = new Blob([vcardContent], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'company-contact.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
 </body>
 </html>
