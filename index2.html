@@ -131,6 +131,7 @@
             transition: all 0.3s ease;
             cursor: pointer;
             direction: ltr;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .phone:hover {
@@ -160,9 +161,11 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .social-btn.whatsapp {
-            background: #25d366;
-        }
+        .social-btn.linkedin:hover { background: #0a66c2; }
+        .social-btn.twitter:hover { background: #1da1f2; }
+        .social-btn.facebook:hover { background: #1877f2; }
+        .social-btn.instagram:hover { background: #e4405f; }
+        .social-btn.whatsapp:hover { background: #25d366; }
 
         .social-btn:before {
             content: '';
@@ -255,21 +258,12 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-        .social-btn.whatsapp {
-            background: rgba(255,255,255,0.08);
-            position: relative;
-        }
-
-        .social-btn.whatsapp:hover {
-            background: #25d366;
-        }
 
         .vcf-download {
             cursor: pointer;
             position: relative;
             overflow: hidden;
         }
-
     </style>
 </head>
 <body>
@@ -286,47 +280,55 @@
         </p>
 
         <div class="contact-info">
-            <div class="phone">
-                <i class="fas fa-phone"></i>
-                +966 55 123 4567
-            </div>
-        </div>
-        <div class="social-links">
-            <a class="social-btn" href="#">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a class="social-btn" href="#">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a class="social-btn" href="#">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <a class="social-btn" href="#">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a class="social-btn whatsapp" href="#">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-        </div>
-        <div class="contact-info">
             <div class="phone vcf-download" onclick="generateVCard()">
                 <i class="fas fa-address-card"></i>
                 حفظ جهة الاتصال
             </div>
         </div>
+        <div class="social-links">
+            <a class="social-btn linkedin" href="#">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a class="social-btn twitter" href="#">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a class="social-btn facebook" href="#">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a class="social-btn instagram" href="#">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a class="social-btn whatsapp" href="https://wa.me/966551234567">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
         <div class="action-buttons">
-            <a href="#" class="action-btn">الموقع الإلكتروني</a>
-            <a href="#" class="action-btn">التواصل المباشر</a>
+            <a href="#" class="action-btn"><i class="fas fa-globe"></i> الموقع الإلكتروني</a>
+            <a href="tel:+966551234567" class="action-btn"><i class="fas fa-phone"></i> الاتصال مباشرة</a>
+            
         </div>
     </div>
+
     <script>
-            function generateVCard() {
+        async function generateVCard() {
+            // تحويل الصورة إلى base64
+            const imgUrl = 'https://picsum.photos/200'; // استبدل برابط الصورة الفعلي
+            const base64Image = await fetch(imgUrl)
+                .then(response => response.blob())
+                .then(blob => new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(blob);
+                }));
+
             const vcardContent = [
                 'BEGIN:VCARD',
                 'VERSION:3.0',
                 'FN:الشركة الرائدة',
                 'ORG:الشركة الرائدة;',
                 'TEL;TYPE=WORK,VOICE:+966551234567',
+                `PHOTO;ENCODING=b;TYPE=JPEG:${base64Image.split(',')[1]}`,
                 'END:VCARD'
             ].join('\n');
 
