@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملف تعريفي عصري</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            padding: 20px;
+        }
+
+        .neo-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow: hidden;
+        }
+
+        .neo-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .holographic-effect {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                rgba(255,255,255,0.1) 25%,
+                transparent 50%,
+                rgba(255,255,255,0.1) 75%);
+            transform: translate(-25%, -25%) rotate(45deg);
+            animation: hologram 4s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes hologram {
+            0% { transform: translate(-25%, -25%) rotate(45deg); }
+            100% { transform: translate(75%, 75%) rotate(45deg); }
+        }
+
+        .logo-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 30px;
+            perspective: 1000px;
+        }
+
+        .logo-3d {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            border-radius: 20px;
+            transform: rotateX(15deg) rotateY(15deg);
+            box-shadow: 0 15px 35px rgba(255,107,107,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .logo-3d:hover {
+            transform: rotateX(0) rotateY(0) scale(1.1);
+        }
+
+        .logo-3d i {
+            color: white;
+            font-size: 3.5em;
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.2));
+        }
+
+        .company-name {
+            font-size: 2.2em;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .company-description {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .phone {
+            background: rgba(255,255,255,0.1);
+            padding: 12px 25px;
+            border-radius: 50px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .phone:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .social-btn {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: white;
+            font-size: 1.5em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .social-btn:hover:before {
+            left: 100%;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 15px;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-btn:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        .action-btn:hover:after {
+            left: 50%;
+            top: 50%;
+        }
+
+        .action-btn:hover {
+            box-shadow: 0 10px 30px rgba(106,17,203,0.4);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 480px) {
+            .neo-card {
+                padding: 40px 25px;
+                border-radius: 25px;
+            }
+            
+            .logo-container {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .company-name {
+                font-size: 1.8em;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="neo-card">
+        <div class="holographic-effect"></div>
+        <div class="logo-container">
+            <div class="logo-3d">
+                <i class="fas fa-rocket"></i>
+            </div>
+        </div>
+        <h1 class="company-name">الشركة الرائدة</h1>
+        <p class="company-description">
+            نبتكر حلولًا رقمية استثنائية تجمع بين الإبداع الفني والتقنية الحديثة لصنع تجارب مستخدم لا تُنسى
+        </p>
+        <div class="contact-info">
+            <div class="phone">
+                <i class="fas fa-phone"></i>
+                +966 55 123 4567
+            </div>
+        </div>
+        <div class="social-links">
+            <a class="social-btn" style="background: #0a66c2;" href="#">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a class="social-btn" style="background: #1da1f2;" href="#">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a class="social-btn" style="background: #1877f2;" href="#">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a class="social-btn" style="background: #e4405f;" href="#">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        <div class="action-buttons">
+            <a href="#" class="action-btn">الموقع الإلكتروني</a>
+            <a href="#" class="action-btn">التواصل المباشر</a>
+        </div>
+    </div>
+</body>
+</html>
